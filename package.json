@@ -3,7 +3,7 @@
 	"publisher": "lauraseidler",
 	"displayName": "React Intl Message Extractor",
 	"description": "",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
@@ -16,24 +16,29 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [{
-			"command": "reactIntlMessageExtractor.extractMessage",
-			"title": "Extract react-intl message"
-		}, {
-			"command": "reactIntlMessageExtractor.extractFormattedMessage",
-			"title": "Extract react-intl FormattedMessage"
-		}],
-		"configuration": [{
-			"title": "React Intl Message Extractor",
-			"properties": {
-				"reactIntlMessageExtractor.localeFile": {
-					"type": "string",
-					"default": "",
-					"description": "Locale file (json)",
-					"scope": "window"
+		"commands": [
+			{
+				"command": "reactIntlMessageExtractor.extractMessage",
+				"title": "Extract react-intl message"
+			},
+			{
+				"command": "reactIntlMessageExtractor.extractFormattedMessage",
+				"title": "Extract react-intl FormattedMessage"
+			}
+		],
+		"configuration": [
+			{
+				"title": "React Intl Message Extractor",
+				"properties": {
+					"reactIntlMessageExtractor.localeFile": {
+						"type": "string",
+						"default": "",
+						"description": "Locale file (json)",
+						"scope": "window"
+					}
 				}
 			}
-		}]
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
