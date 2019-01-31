@@ -4,8 +4,6 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
-const editor = vscode.window.activeTextEditor;
-
 const messagesFileTemplate = `import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
@@ -14,11 +12,7 @@ const messages = defineMessages({
 export default messages;
 `;
 
-async function extractMessage() {
-	if (!editor) {
-		return;
-	}
-
+async function extractMessage(editor: vscode.TextEditor) {
 	const text = editor.document.getText(editor.selection);
 
 	if (!text) {
@@ -134,11 +128,13 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	const commandExtractMessage = vscode.commands.registerCommand('reactIntlMessageExtractor.extractMessage', async () => {
+		const editor = vscode.window.activeTextEditor;
+
 		if (!editor) {
 			return;
 		}
 
-		const variableName = await extractMessage();
+		const variableName = await extractMessage(editor);
 
 		if (!variableName) {
 			return;
@@ -155,11 +151,13 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	const commandExtractFormattedMessage = vscode.commands.registerCommand('reactIntlMessageExtractor.extractFormattedMessage', async () => {
+		const editor = vscode.window.activeTextEditor;
+
 		if (!editor) {
 			return;
 		}
 
-		const variableName = await extractMessage();
+		const variableName = await extractMessage(editor);
 
 		if (!variableName) {
 			return;
